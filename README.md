@@ -1,2 +1,2 @@
 # fake-server
-this is the README
+This is the README
