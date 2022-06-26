@@ -1,8 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
+        maven 'maven'
     }
     stages {
         stage ('Initialize') {
@@ -13,7 +12,7 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('build') {
             steps {
                 echo "running ubild stage"
