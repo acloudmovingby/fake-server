@@ -17,6 +17,7 @@ pipeline {
             steps {
                 echo "*** BUILD STAGE ***"
                 sh 'mvn install'
+
                 sh 'echo $?'
             }
         }
