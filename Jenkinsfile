@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                echo "running ubild stage"
                 sh 'mvn --version'
             }
         }
