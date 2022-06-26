@@ -15,8 +15,9 @@ pipeline {
 
         stage('build') {
             steps {
-                echo "running ubild stage"
-                sh 'mvn --version'
+                echo "*** BUILD STAGE ***"
+                sh 'mvn install'
+                sh 'echo $?'
             }
         }
     }
