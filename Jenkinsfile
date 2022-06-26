@@ -17,6 +17,8 @@ pipeline {
             steps {
                 echo "*** BUILD STAGE ***"
                 sh 'mvn install'
+
+                sh 'echo "Error code for mvn install"'
                 sh 'echo $?'
             }
         }
