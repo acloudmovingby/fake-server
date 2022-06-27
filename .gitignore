@@ -1,3 +1,5 @@
-	.idea/
-	add-commit-push.sh
-	target/
+.idea/*
+.idea/**/
+add-commit-push.sh
+target/*
+target/**/
