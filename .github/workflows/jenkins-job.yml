@@ -1,0 +1,17 @@
+name: Trigger Jenkins Multiple Jobsname: trigger jenkins job
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: any
+    steps:
+      - name: trigger single Job
+        uses: appleboy/jenkins-action@master
+        with:
+          url: "http://example.com"
+          user: "example"
+          token: ${{ secrets.TOKEN }}
+          job: "foobar"
+
+uses: appleboy/jenkins-action@v0.0.2
