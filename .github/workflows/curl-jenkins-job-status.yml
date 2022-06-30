@@ -31,6 +31,8 @@ jobs:
           # making file runnable (might be unnecessary)...
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/jenkins-job-status.sh"
           
+          JOB_STATUS_URL='http://20.106.205.93:8080/job/fake-server-pipeline/31/'
+          
           # running jenkins-job-status.sh script
-          "${GITHUB_WORKSPACE}/.github/scripts/jenkins-job-status.sh http://20.106.205.93:8080/job/fake-server-pipeline/31/"
+          "${GITHUB_WORKSPACE}/.github/scripts/jenkins-job-status.sh ${JOB_STATUS_URL}"
       
