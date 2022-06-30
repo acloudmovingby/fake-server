@@ -28,9 +28,9 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run curl call to query jenkins job status
         run: |
-          # make file runnable, might not be necessary
+          # making file runnable (might be unnecessary)...
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/jenkins-job-status.sh"
           
-          # run script
-          "${GITHUB_WORKSPACE}/.github/scripts/jenkins-job-status.sh"
+          # running jenkins-job-status.sh script
+          "${GITHUB_WORKSPACE}/.github/scripts/jenkins-job-status.sh http://20.106.205.93:8080/job/fake-server-pipeline/31/"
       
