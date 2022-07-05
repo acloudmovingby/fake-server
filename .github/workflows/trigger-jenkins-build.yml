@@ -33,8 +33,7 @@ jobs:
           python-version: 3.8 #install the python needed
           
       - name: Install python dependencies
-        run: |
-          pip install requests urllib
+        run: echo "run pip here if necessary.."
 
       - name: Run python script to trigger build and fetch job number
         run: |
