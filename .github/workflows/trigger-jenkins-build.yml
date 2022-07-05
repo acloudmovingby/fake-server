@@ -41,6 +41,6 @@ jobs:
           # making file runnable (might be unnecessary)...
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
           
-          # running jenkins-job-status.sh script
-          "python3 ${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
+          # running jenkins-trigger-build.py script
+          python3 "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
       
