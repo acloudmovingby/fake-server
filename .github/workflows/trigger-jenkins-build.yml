@@ -34,8 +34,7 @@ jobs:
           
       - name: Install python dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          pip install requests urlparse
+          pip install requests urllib
 
       - name: Run python script to trigger build and fetch job number
         run: |
