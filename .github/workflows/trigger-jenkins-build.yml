@@ -42,5 +42,5 @@ jobs:
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
           
           # running jenkins-job-status.sh script
-          "python3 ${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py http://20.106.205.93:8080/job/fake-server-pipeline/31/"
+          "python3 ${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
       
