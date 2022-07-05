@@ -41,5 +41,7 @@ jobs:
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
           
           # running jenkins-trigger-build.py script
-          python3 "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
+          python3 "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py" > "${GITHUB_WORKSPACE}/job_number.txt"
+          
+          cat "${GITHUB_WORKSPACE}/job_number.txt"
       
