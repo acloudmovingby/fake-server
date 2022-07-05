@@ -27,12 +27,13 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: setup python
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.8 #install the python needed
-              - name: Install dependencies
-            run: |
-              python3 -m pip install --upgrade pip
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8 #install the python needed
+            - name: Install dependencies
+          run: |
+            python3 -m pip install --upgrade pip
+
       - name: Run python script to trigger build and fetch job number
         run: |
           # making file runnable (might be unnecessary)...

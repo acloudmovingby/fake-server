@@ -3,3 +3,5 @@
 add-commit-push.sh
 target/*
 target/**/
+.github/.idea/
+.github/scripts/.idea/
