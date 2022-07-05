@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build in Jenkins
+name: Curl Jenkins Job Status
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "develop" branch
-  push:
-    branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
+  #push:
+   # branches: [ "develop" ]
+  #pull_request:
+  #  branches: [ "develop" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,13 +25,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
-      - name: Loop until jenkins finishes?
+      - name: setup python
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.8 #install the python needed
+              - name: Install dependencies
+            run: |
+              python3 -m pip install --upgrade pip
+      - name: Run python script to trigger build and fetch job number
         run: |
-          echo "sending request to Jenkins"
-          DONE='curl https://random-data-api.com/api/beer/random_beer'
-          echo $DONE
+          # making file runnable (might be unnecessary)...
+          chmod +x "${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py"
+          
+          # running jenkins-job-status.sh script
+          "python3 ${GITHUB_WORKSPACE}/.github/scripts/jenkins-trigger-build.py http://20.106.205.93:8080/job/fake-server-pipeline/31/"
+      
