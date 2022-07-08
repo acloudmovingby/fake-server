@@ -8,6 +8,11 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh "echo build"
+                sh """
+                    echo "in build";
+                    git status
+                """
                 sh 'mvn install'
                 sh """
                     curl --location --request GET 'https://api.github.com/repos/acloudmovingby/fake-server/commits/846015bcfae961b49159670ae3d518454d0abae4/status' \\
