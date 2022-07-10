@@ -31,6 +31,7 @@ pipeline {
             steps {
                 sh """
                     git status
+                    echo $ref
                 """
             }
         }
