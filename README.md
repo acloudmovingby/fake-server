@@ -10,5 +10,4 @@ june-29-apricot
  
  
  
- 
-omg
+here we are and it's july
