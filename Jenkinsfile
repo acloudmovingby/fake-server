@@ -9,7 +9,9 @@ pipeline {
     GenericTrigger(
      genericVariables: [
       [key: 'ref', value: '$.ref']
-     ]
+     ],
+      printContributedVariables: true,
+     printPostContent: true
     )
   }
 
