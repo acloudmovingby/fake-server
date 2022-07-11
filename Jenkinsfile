@@ -25,7 +25,7 @@ pipeline {
         stage('Check if it\'s a pull request') {
             steps {
                 echo "Apparently job is running..."
-                echo $head_commit
+                sh "echo $head_commit"
             }
         }
     }
