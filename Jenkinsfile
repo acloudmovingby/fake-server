@@ -23,7 +23,6 @@ pipeline {
                     git status
                     echo "********"
                     echo $ref
-                    ## echo $action
                 """
             }
         }
