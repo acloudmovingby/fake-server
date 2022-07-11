@@ -15,7 +15,8 @@ pipeline {
       printContributedVariables: true,
      printPostContent: true,
         
-        regexpFilterText: '$head_commit'
+        regexpFilterText: '$head_commit',
+        regexpFilterExpression: 'nothing-should-match-this'
     )
   }
 
