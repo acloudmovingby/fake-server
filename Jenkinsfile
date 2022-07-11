@@ -16,7 +16,7 @@ pipeline {
      printPostContent: true,
         
         regexpFilterText: '$head_commit',
-        regexpFilterExpression: 'nothing-should-match-this'
+        regexpFilterExpression: '..*'
     )
   }
 
