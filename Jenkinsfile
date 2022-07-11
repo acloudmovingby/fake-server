@@ -8,7 +8,7 @@ pipeline {
     triggers {
     GenericTrigger(
      genericVariables: [
-      [key: 'action', value: '$.action']
+      [key: 'ref', value: '$.ref']
      ]
     )
   }
@@ -20,7 +20,7 @@ pipeline {
                 sh """
                     git status
                     echo "********"
-                    echo $action
+                    echo $ref
                     ## echo $action
                 """
             }
