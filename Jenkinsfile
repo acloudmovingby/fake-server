@@ -22,14 +22,10 @@ pipeline {
 
 
     stages {
-        stage('build') {
+        stage('Check if it\'s a pull request') {
             steps {
-                sh """
-                    git status
-                    echo "********"
-                    echo $ref
-                    echo $PR_COMMIT_HASH
-                """
+                echo "Apparently job is running..."
+                echo $head_commit
             }
         }
     }
