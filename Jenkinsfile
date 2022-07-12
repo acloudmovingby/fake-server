@@ -28,6 +28,7 @@ pipeline {
                 git fetch --all
                 git checkout develop
                 git pull
+                git checkout -b jenkins-build-$PR_COMMIT_HASH
                 git merge $PR_COMMIT_HASH
                 mvn clean install
                 """
