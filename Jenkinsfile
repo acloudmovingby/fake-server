@@ -15,17 +15,21 @@ pipeline {
       printContributedVariables: true,
      printPostContent: true,
         
-        regexpFilterText: '$head_commit',
-        regexpFilterExpression: '..*'
+        regexpFilterText: '$head_commit', // only (?) pull requests have this field
+        regexpFilterExpression: '..*' // confirms that it's a pull request
     )
   }
 
 
     stages {
-        stage('Check if it\'s a pull request') {
+        stage('Try to merge with develop and build') {
             steps {
-                echo "Apparently job is running..."
-                sh "echo $head_commit"
+                sh """
+                git fetch --all
+                git checkout develop
+                git merge $PR_COMMIT_HASH
+                mvn clean install
+                """
             }
         }
     }
