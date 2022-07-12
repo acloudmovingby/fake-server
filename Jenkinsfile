@@ -15,8 +15,8 @@ pipeline {
       printContributedVariables: true,
      printPostContent: true,
         
-        regexpFilterText: '$pull_request', // only pull requests have this field, one would assume...
-        regexpFilterExpression: 'nothing-should-match-this' // confirms that the field exists and has some value, if not this Jenkins job won't run
+        regexpFilterText: '$PR_COMMIT_HASH',
+        regexpFilterExpression: '..*' // confirms that the field exists and has some value, if not this Jenkins job won't run
     )
   }
 
