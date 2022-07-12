@@ -27,6 +27,7 @@ pipeline {
                 sh """
                 git fetch --all
                 git checkout develop
+                git pull
                 git merge $PR_COMMIT_HASH
                 mvn clean install
                 """
