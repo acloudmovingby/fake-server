@@ -30,7 +30,23 @@ pipeline {
                 git pull
                 git checkout -b jenkins-build-$PR_COMMIT_HASH
                 git merge $PR_COMMIT_HASH
+                curl --location --request POST 'https://api.github.com/repos/acloudmovingby/fake-server/statuses/$PR_COMMIT_HASH' \
+--header 'Accept: application/vnd.github+json' \
+--header 'Authorization: token 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' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    "state":"pending",
+    "context":"build"
+}'
                 mvn clean install
+                curl --location --request POST 'https://api.github.com/repos/acloudmovingby/fake-server/statuses/$PR_COMMIT_HASH' \
+--header 'Accept: application/vnd.github+json' \
+--header 'Authorization: token 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' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    "state":"success",
+    "context":"build"
+}'
                 """
             }
         }
