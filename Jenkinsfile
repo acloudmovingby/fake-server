@@ -9,14 +9,14 @@ pipeline {
     GenericTrigger(
      genericVariables: [
       [key: 'ref', value: '$.ref'],
-         [key: 'PR_COMMIT_HASH', value: '$.head_commit.id'],
-         [key: 'head_commit', value: '$.head_commit']
+         [key: 'PR_COMMIT_HASH', value: '$.pull_request.head.sha'],
+         [key: 'pull_request', value: '$.pull_request']
      ],
       printContributedVariables: true,
      printPostContent: true,
         
-        regexpFilterText: '$head_commit', // only (?) pull requests have this field
-        regexpFilterExpression: '..*' // confirms that it's a pull request
+        regexpFilterText: '$pull_request', // only pull requests have this field, one would assume...
+        regexpFilterExpression: '..*' // confirms that the field exists and has some value, if not this Jenkins job won't run
     )
   }
 
