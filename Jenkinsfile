@@ -8,6 +8,7 @@ pipeline {
     environment {
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
         RANDOM_NUM = "${Math.abs(new Random().nextInt())}"
+        TEMP_BRANCH = "merge-stuff-${RANDOM_NUM}"
     }
 
     triggers {
@@ -32,7 +33,6 @@ pipeline {
                 git fetch --all
                 git checkout develop
                 git pull
-                TEMP_BRANCH=merge-$PR_COMMIT_HASH-into-develop-$RANDOM_NUM
                 git checkout -b $TEMP_BRANCH
                 echo "Github token is $GITHUB_TOKEN"
                 echo pwd
