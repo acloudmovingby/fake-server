@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         GITHUB_TOKEN = credentials('GITHUB_TOKEN')
-        RANDOM_NUM = "${Math.abs(new Random().nextInt(max+1))}"
+        RANDOM_NUM = "${Math.abs(new Random().nextInt())}"
     }
 
     triggers {
