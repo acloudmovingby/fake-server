@@ -30,19 +30,7 @@ pipeline {
         stage('Try to merge with develop and build') {
             steps {
                 sh """
-                git fetch --all
-                git checkout develop
-                git pull
-                git checkout -b $TEMP_BRANCH
-                echo "Github token is $GITHUB_TOKEN"
-                echo "Setting status to pending..."
-                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH build pending
-                git merge $PR_COMMIT_HASH
-                mvn clean install
-                echo "set status to success..."
-                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH build success
-                git checkout develop
-                git branch -D $TEMP_BRANCH
+                bash jenkins-scripts/merge-then-try-build.sh $GITHUB_TOKEN $PR_COMMIT_HASH
                 """
             }
         }
