@@ -24,13 +24,22 @@ echo "Attempting to set the '$CONTEXT' status to '$STATE' for commit $COMMIT_HAS
 
 echo "Response from Github:"
 
-curl --location --request POST "https://api.github.com/repos/acloudmovingby/$REPO_NAME/statuses/$COMMIT_HASH" \
+GITHUB_REPLY=$(curl --location --request POST "https://api.github.com/repos/acloudmovingby/$REPO_NAME/statuses/$COMMIT_HASH" \
   --header "Accept: application/vnd.github+json" \
   --header "Authorization: token $GITHUB_TOKEN" \
   --header "Content-Type: text/plain" \
   --data-raw "{
     \"state\": \"$STATE\",
     \"context\": \"$CONTEXT\"
-}"
+}")
+
+echo $GITHUB_REPLY
+
+# TODO handle other possible problems besides this one...
+
+if [[ $GITHUB_REPLY == *"Bad credentials"* ]] ; then
+  echo "repo=$REPO_NAME, token=$GITHUB_TOKEN, commit=$COMMIT_HASH, state=$STATE, context=$CONTEXT"
+  exit 2
+fi
 
 exit 0
