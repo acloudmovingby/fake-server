@@ -15,7 +15,8 @@ pipeline {
         GenericTrigger(
                 genericVariables: [
                         [key: 'ref', value: '$.ref'],
-                        [key: 'PR_COMMIT_HASH', value: '$.pull_request.head.sha']
+                        [key: 'PR_COMMIT_HASH', value: '$.pull_request.head.sha'],
+                        [key: 'TARGET_BRANCH', value: '$.pull_request.base.ref']
                 ],
                 printContributedVariables: true,
                 printPostContent: true,
@@ -33,6 +34,7 @@ pipeline {
                 sh """
                 bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH dbup pending
                 bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH ATs pending
+                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH "Downstream merge" pending
                 """
             }
         }
@@ -58,6 +60,14 @@ pipeline {
             steps {
                 sh """
                 bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH ATs success
+                """
+            }
+        }
+        
+        stage('Merge and build downstream branches') {
+            steps {
+                sh """
+                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH "Downstream merge" success
                 """
             }
         }
