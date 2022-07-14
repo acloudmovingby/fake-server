@@ -46,16 +46,20 @@ pipeline {
         }
         
         stage('Run dbup') {
-            sh """
-            bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH dbup success
-            sleep 3
-            """
+            steps {
+                sh """
+                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH dbup success
+                sleep 3
+                """
+            }
         }
         
         stage('Run ATs') {
-            sh """
-            bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH ATs success
-            """
+            steps {
+                sh """
+                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH ATs success
+                """
+            }
         }
     }
 }
