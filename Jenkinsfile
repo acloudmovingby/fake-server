@@ -27,12 +27,35 @@ pipeline {
 
 
     stages {
+        
+        stage('Set statuses to pending') {
+            steps {
+                sh """
+                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH dbup pending
+                bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH ATs pending
+                """
+            }
+        }
+        
         stage('Try to merge with develop and build') {
             steps {
                 sh """
                 bash jenkins-scripts/merge-then-try-build.sh $GITHUB_TOKEN $PR_COMMIT_HASH
                 """
             }
+        }
+        
+        stage('Run dbup') {
+            sh """
+            bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH dbup success
+            sleep 3
+            """
+        }
+        
+        stage('Run ATs') {
+            sh """
+            bash jenkins-scripts/github-commit-status.sh fake-server $GITHUB_TOKEN $PR_COMMIT_HASH ATs success
+            """
         }
     }
 }
